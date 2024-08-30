@@ -6,3 +6,8 @@ header {
 .logo {
   width: 4em;
 }
+
+footer {
+  display: grid;
+  place-items: center;
+}
