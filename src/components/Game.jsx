@@ -8,6 +8,7 @@ const REGION = 'kanto';
 
 function Game() {
     const [pokemonData, setPokemonData] = useState([]);
+    const [seenPokemon, setSeenPokemon] = useState([]);
 
     useEffect(() => {
         (async () => {
@@ -20,6 +21,10 @@ function Game() {
         return <p>Loading...</p>
     }
 
+    function handleNew() {
+        setSeenPokemon([...seenPokemon, name]);
+    }
+
     const currPokemon = pokemonData[Math.floor(Math.random() * pokemonData.length)];
     const [name, src] = Object.entries(currPokemon)[0];
     return (
@@ -28,7 +33,7 @@ function Game() {
 
             <div className="btns">
                 <button>Seen</button>
-                <button>New</button>
+                <button onClick={handleNew}>New</button>
             </div>
         </div>
     )
