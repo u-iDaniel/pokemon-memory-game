@@ -10,7 +10,8 @@ const REGION = 'kanto';
 function Game() {
     const [pokemonData, setPokemonData] = useState([]);
     const [seenPokemon, setSeenPokemon] = useState([]);
-    const [correct, setCorrect] = useState(null);
+    const [score, setScore] = useState(0);
+    const [lives, setLives] = useState(3);
 
     useEffect(() => {
         (async () => {
@@ -29,21 +30,33 @@ function Game() {
         }
     }
     
+    // Where addUnseen is placed does not matter as
+    // seenPokemon array only updates after next render
     function handleSeen() {
         addUnseen();
-        setCorrect(seenPokemon.includes(name));
+        const isSeen = seenPokemon.includes(name)
+        if (isSeen) {
+            setScore((prevScore) => prevScore + 1);
+        } else {
+            setLives((prevLives) => prevLives - 1);
+        }
     }
     
     function handleNew() {
         addUnseen();
-        setCorrect(!seenPokemon.includes(name));
+        const isNew = !seenPokemon.includes(name)
+        if (isNew) {
+            setScore((prevScore) => prevScore + 1);
+        } else {
+            setLives((prevLives) => prevLives - 1);
+        }
     }
-    
+
     const currPokemon = pokemonData[Math.floor(Math.random() * pokemonData.length)];
     const [name, src] = Object.entries(currPokemon)[0];
     return (
         <div className='game'>
-            <Score correct={correct} />
+            <Score score={score} lives={lives} />
 
             <Card name={name} src={src} />
 
