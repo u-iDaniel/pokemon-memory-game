@@ -10,3 +10,9 @@
 .card p {
     text-transform: capitalize;
 }
+
+@media (prefers-color-scheme: light) {
+    .card {
+        border: 2px solid black;
+    }
+}
