@@ -10,6 +10,7 @@ const REGION = 'kanto';
 function Game() {
     const [pokemonData, setPokemonData] = useState([]);
     const [seenPokemon, setSeenPokemon] = useState([]);
+    const [correct, setCorrect] = useState(null);
 
     useEffect(() => {
         (async () => {
@@ -22,20 +23,32 @@ function Game() {
         return <p>Loading...</p>
     }
 
-    function handleNew() {
-        setSeenPokemon([...seenPokemon, name]);
+    const addUnseen = function addIfPokemonNotSeenBefore() {
+        if (!seenPokemon.includes(name)) {
+            setSeenPokemon([...seenPokemon, name]);
+        }
     }
-
+    
+    function handleSeen() {
+        addUnseen();
+        setCorrect(seenPokemon.includes(name));
+    }
+    
+    function handleNew() {
+        addUnseen();
+        setCorrect(!seenPokemon.includes(name));
+    }
+    
     const currPokemon = pokemonData[Math.floor(Math.random() * pokemonData.length)];
     const [name, src] = Object.entries(currPokemon)[0];
     return (
         <div className='game'>
-            <Score />
+            <Score correct={correct} />
 
             <Card name={name} src={src} />
 
             <div className="btns">
-                <button>Seen</button>
+                <button onClick={handleSeen}>Seen</button>
                 <button onClick={handleNew}>New</button>
             </div>
         </div>
