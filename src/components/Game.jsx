@@ -20,8 +20,8 @@ function Game() {
         return <p>Loading...</p>
     }
 
-    const randomPokemon = pokemonData[Math.floor(Math.random() * pokemonData.length)];
-    const [name, src] = Object.entries(randomPokemon)[0];
+    const currPokemon = pokemonData[Math.floor(Math.random() * pokemonData.length)];
+    const [name, src] = Object.entries(currPokemon)[0];
     return (
         <div className='game'>
             <Card name={name} src={src} />
