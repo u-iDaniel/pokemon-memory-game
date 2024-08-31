@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import { getPokemon } from '../pokeapi/retrievePokemon';
+import Score from './Score';
 import Card from './Card';
 import './Game.css';
 
@@ -29,6 +30,8 @@ function Game() {
     const [name, src] = Object.entries(currPokemon)[0];
     return (
         <div className='game'>
+            <Score />
+
             <Card name={name} src={src} />
 
             <div className="btns">
