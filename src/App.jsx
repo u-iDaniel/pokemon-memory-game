@@ -1,3 +1,4 @@
+import Game from './components/Game';
 import pokemonLogo from './assets/International_Pokémon_logo.svg'
 import './App.css'
 
@@ -9,6 +10,8 @@ function App() {
         <h1><img className='logo' src={pokemonLogo} alt="Pokemon Logo" /> Memory Game</h1>
       </header>
       
+      <Game />
+
       <hr />
       <footer>
         <h2>How to play:</h2>
