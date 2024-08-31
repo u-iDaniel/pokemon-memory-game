@@ -6,3 +6,7 @@
     text-align: center;
     margin: auto;
 }
+
+.card p {
+    text-transform: capitalize;
+}
