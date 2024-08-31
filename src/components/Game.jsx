@@ -25,6 +25,11 @@ function Game() {
     return (
         <div className='game'>
             <Card name={name} src={src} />
+
+            <div className="btns">
+                <button>Seen</button>
+                <button>New</button>
+            </div>
         </div>
     )
 }

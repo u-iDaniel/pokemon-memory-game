@@ -2,3 +2,14 @@
     margin-top: 2em;
     margin-bottom: 3em;
 }
+
+.game .btns {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 2em;
+}
+
+.game button {
+    text-transform: uppercase;
+}
