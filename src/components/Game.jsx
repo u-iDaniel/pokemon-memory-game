@@ -13,7 +13,7 @@ function updateHighScore(score) {
 
 function getHighScore() {
     const highScore = localStorage.getItem("highScore");
-    return highScore ?? 0;
+    return highScore ?? 0; // Returns 0 if key not found
 }
 
 function Game() {
@@ -47,6 +47,9 @@ function Game() {
             <div className='game-over'>
               <h2>Game Over!</h2>
               <p>Your final score: {score}</p>
+              {score > getHighScore() && (
+                <h3 className='high-score'>*New highscore!*</h3>
+              )}
               <button onClick={handleReset}>Play Again</button>
             </div>
           );
