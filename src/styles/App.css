@@ -11,4 +11,5 @@ header {
 footer {
   display: grid;
   place-items: center;
+  margin: 1em;
 }
