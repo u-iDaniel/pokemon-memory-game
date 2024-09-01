@@ -12,6 +12,7 @@ function Game() {
     const [seenPokemon, setSeenPokemon] = useState([]);
     const [score, setScore] = useState(0);
     const [lives, setLives] = useState(3);
+    const [isGameOver, setIsGameOver] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -20,8 +21,25 @@ function Game() {
         })();
     }, []);
 
+    useEffect(() => {
+        if (lives <= 0) {
+            setIsGameOver(true);
+        }
+    }, [lives]);
+
+    // Conditional Renderings
     if (pokemonData.length == 0) {
         return <p>Loading...</p>
+    }
+
+    if (isGameOver) {
+        return (
+            <div className='game-over'>
+              <h2>Game Over!</h2>
+              <p>Your final score: {score}</p>
+              <button onClick={handleReset}>Play Again</button>
+            </div>
+          );
     }
 
     const addUnseen = function addIfPokemonNotSeenBefore() {
@@ -50,6 +68,14 @@ function Game() {
         } else {
             setLives((prevLives) => prevLives - 1);
         }
+    }
+
+    function handleReset() {
+        // In future if user can change generations then refetch pokemon data
+        setSeenPokemon([]);
+        setScore(0);
+        setLives(3);
+        setIsGameOver(false);
     }
 
     const currPokemon = pokemonData[Math.floor(Math.random() * pokemonData.length)];
