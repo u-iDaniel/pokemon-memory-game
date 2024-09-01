@@ -8,12 +8,19 @@ import './Game.css';
 const REGION = 'kanto';
 
 function updateHighScore(score) {
-    localStorage.setItem("highScore", score);
+    const highScore = getHighScore();
+    if (score > highScore) {
+        localStorage.setItem("highScore", score);
+    }
 }
 
 function getHighScore() {
     const highScore = localStorage.getItem("highScore");
-    return highScore ?? 0; // Returns 0 if key not found
+    if (highScore === null) {
+        return 0;
+    } else {
+        return +highScore;
+    }
 }
 
 function Game() {
@@ -22,6 +29,8 @@ function Game() {
     const [score, setScore] = useState(0);
     const [lives, setLives] = useState(3);
     const [isGameOver, setIsGameOver] = useState(false);
+    const [currHighScore, setCurrHighScore] = useState(getHighScore());
+    const [isNewHighScore, setIsNewHighScore] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -33,6 +42,7 @@ function Game() {
     useEffect(() => {
         if (lives <= 0) {
             setIsGameOver(true);
+            checkHighScore();
         }
     }, [lives]);
 
@@ -42,12 +52,11 @@ function Game() {
     }
 
     if (isGameOver) {
-        updateHighScore(score);
         return (
             <div className='game-over'>
               <h2>Game Over!</h2>
               <p>Your final score: {score}</p>
-              {score > getHighScore() && (
+              {isNewHighScore && (
                 <h3 className='high-score'>*New highscore!*</h3>
               )}
               <button onClick={handleReset}>Play Again</button>
@@ -83,6 +92,16 @@ function Game() {
         }
     }
 
+    function checkHighScore() {
+        if (score > currHighScore) {
+            setCurrHighScore(score);
+            setIsNewHighScore(true);
+            updateHighScore(score);
+        } else {
+            setIsNewHighScore(false);
+        }
+    }
+
     function handleReset() {
         // In future if user can change generations then refetch pokemon data
         setSeenPokemon([]);
@@ -95,7 +114,7 @@ function Game() {
     const [name, src] = Object.entries(currPokemon)[0];
     return (
         <div className='game'>
-            <Score score={score} lives={lives} highScore={getHighScore()} />
+            <Score score={score} lives={lives} highScore={currHighScore} />
 
             <Card name={name} src={src} />
 
