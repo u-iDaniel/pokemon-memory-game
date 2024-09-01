@@ -1,4 +1,4 @@
-import './Score.css';
+import '../styles/Score.css';
 
 function Score({ score, lives, highScore }) {
 

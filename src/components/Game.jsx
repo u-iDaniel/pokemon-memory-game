@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import { getPokemon } from '../pokeapi/retrievePokemon';
 import Score from './Score';
 import Card from './Card';
-import './Game.css';
+import '../styles/Game.css';
 
 // May let user select the generation of Pokemon in the future
 const REGION = 'kanto';

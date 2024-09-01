@@ -1,6 +1,6 @@
 import Game from './components/Game';
 import pokemonLogo from './assets/International_Pokémon_logo.svg'
-import './App.css'
+import './styles/App.css';
 
 function App() {
 
