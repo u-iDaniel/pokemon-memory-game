@@ -1,0 +1,60 @@
+.game,
+.game-over {
+    margin-top: 2em;
+    margin-bottom: 3em;
+}
+
+.game .btns {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 2em;
+}
+
+.game button {
+    text-transform: uppercase;
+}
+
+.game-over {
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-inline: auto;
+    gap: 1em;
+    border: 2px solid white;
+    padding: 2em 1em;
+}
+
+.high-score {
+    text-transform: uppercase;
+    background: red;
+    /* Rainbow background */
+    background: -webkit-linear-gradient(left, orange, yellow, green, cyan, blue, violet);
+    background: -o-linear-gradient(right, orange, yellow, green, cyan, blue, violet);
+    background: -moz-linear-gradient(right, orange, yellow, green, cyan, blue, violet);
+    background: linear-gradient(to right, orange, yellow, green, cyan, blue, violet);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+@media (prefers-color-scheme: light) {
+    .game-over {
+        border: 2px solid black;
+    }
+
+    .high-score {
+        /* Rainbow background without yellow for better readability */
+        background: red;
+        background: -webkit-linear-gradient(left, red, orange, green, cyan, blue, violet);
+        background: -o-linear-gradient(right, red, orange, green, cyan, blue, violet);
+        background: -moz-linear-gradient(right, red, orange, green, cyan, blue, violet);
+        background: linear-gradient(to right, red, orange, green, cyan, blue, violet);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+    }
+}

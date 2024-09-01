@@ -1,0 +1,18 @@
+.card {
+    max-width: 200px;
+    border: 2px solid white;
+    padding-top: 3em;
+    padding-bottom: 0.5em;
+    text-align: center;
+    margin: auto;
+}
+
+.card p {
+    text-transform: capitalize;
+}
+
+@media (prefers-color-scheme: light) {
+    .card {
+        border: 2px solid black;
+    }
+}

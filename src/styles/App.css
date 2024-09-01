@@ -1,6 +1,7 @@
 header {
   display: flex;
   justify-content: center;
+  padding-top: 2em;
 }
 
 .logo {
@@ -10,4 +11,5 @@ header {
 footer {
   display: grid;
   place-items: center;
+  margin: 1em;
 }
