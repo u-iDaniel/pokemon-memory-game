@@ -7,6 +7,15 @@ import './Game.css';
 // May let user select the generation of Pokemon in the future
 const REGION = 'kanto';
 
+function updateHighScore(score) {
+    localStorage.setItem("highScore", score);
+}
+
+function getHighScore() {
+    const highScore = localStorage.getItem("highScore");
+    return highScore ?? 0;
+}
+
 function Game() {
     const [pokemonData, setPokemonData] = useState([]);
     const [seenPokemon, setSeenPokemon] = useState([]);
@@ -33,6 +42,7 @@ function Game() {
     }
 
     if (isGameOver) {
+        updateHighScore(score);
         return (
             <div className='game-over'>
               <h2>Game Over!</h2>
@@ -82,7 +92,7 @@ function Game() {
     const [name, src] = Object.entries(currPokemon)[0];
     return (
         <div className='game'>
-            <Score score={score} lives={lives} />
+            <Score score={score} lives={lives} highScore={getHighScore()} />
 
             <Card name={name} src={src} />
 
